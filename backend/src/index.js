@@ -9,9 +9,12 @@ import songsRoutes from "./routes/song.route.js";
 import albumRoutes from "./routes/album.route.js";
 import statsRoutes from "./routes/stats.route.js";
 
+import { connectDb } from "./lib/db.js";
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
+connectDb();
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
