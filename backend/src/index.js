@@ -39,14 +39,12 @@ app.use("/api/album", albumRoutes);
 app.use("/api/stats", statsRoutes);
 //error handler
 app.use((err, req, res, next) => {
-  res
-    .status(500)
-    .json({
-      messagge:
-        process.env.NODE_ENV == "production"
-          ? "Internal Server Error"
-          : err.messagge,
-    });
+  res.status(500).json({
+    messagge:
+      process.env.NODE_ENV == "production"
+        ? "Internal Server Error"
+        : err.messagge,
+  });
 });
 
 app.listen(PORT, () => {
