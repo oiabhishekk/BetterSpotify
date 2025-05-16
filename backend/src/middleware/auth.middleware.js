@@ -8,15 +8,15 @@ export const protectRoute = async (req, res, next) => {
 export const requireAdmin = async (req, res, next) => {
   try {
     const currentUser = await clerkClient.users.getUser(req.auth.userId);
-    const isAdmin =(process.env.ADMIN_EMAIL === currentUser.primaryEmailAddress?.emailAddress);
+    const isAdmin =
+      process.env.ADMIN_EMAIL === currentUser.primaryEmailAddress?.emailAddress;
     if (!isAdmin) {
       res.status(403).json({ message: "Unauthorized - you must be admin" });
       return;
     }
-    next()
+    next();
   } catch (error) {
     console.log("Error in auth callback", error);
-    res.status(500).json({ message: "Internal server error", error });
-
+    next(error);
   }
 };
