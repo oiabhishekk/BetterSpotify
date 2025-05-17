@@ -2,9 +2,11 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import fileUpload from "express-fileupload";
-
+import cors from "cors";
 dotenv.config();
 const app = express();
+app.use(cors());
+
 import { clerkMiddleware } from "@clerk/express";
 
 //routes
@@ -39,6 +41,7 @@ app.use("/api/album", albumRoutes);
 app.use("/api/stats", statsRoutes);
 //error handler
 app.use((err, req, res, next) => {
+  console.log("error", err);
   res.status(500).json({
     messagge:
       process.env.NODE_ENV == "production"

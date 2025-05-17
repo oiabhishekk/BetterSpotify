@@ -1,23 +1,31 @@
 import axiosInstance from "@/lib/axios";
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthCallBackPage = () => {
-  const { userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user, isLoaded } = useUser();
-  console.log(userId, sessionId, getToken, isSignedIn, user, isLoaded);
+  const { user, isLoaded } = useUser();
+  const { signOut } = useClerk();
+  const navigate = useNavigate();
   useEffect(() => {
-    console.log("jii");
-
     const syncUserToDB = async () => {
-      axiosInstance.post("/auth/callback", {
-        id: user?.id,
-        firstName: user?.firstName,
-        lastName: user?.lastName,
-        imageUrl: user?.imageUrl,
-      });
+      try {
+        await axiosInstance.post("/auth/callback", {
+          id: user?.id,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          imageUrl: user?.imageUrl,
+        });
+      } catch {
+        console.log("Error while signIn");
+        await signOut();
+        // signout somehow
+      } finally {
+        navigate("/");
+      }
     };
-  }, []);
+    syncUserToDB();
+  }, [isLoaded, navigate, user]);
   if (!isLoaded || !user) {
     return <>lofind</>;
   }
