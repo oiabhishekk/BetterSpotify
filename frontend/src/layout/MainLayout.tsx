@@ -19,7 +19,7 @@ const MainLayout = () => {
           defaultSize={20}
           minSize={isMobile ? 0 : 20}
           maxSize={30}
-          className="bg-amber-100"
+          className=""
         >
           <LeftSideBar />
         </ResizablePanel>
@@ -30,12 +30,7 @@ const MainLayout = () => {
         </ResizablePanel>
         <ResizableHandle className="w-2 bg-black rounded-lg transition-colors " />
 
-        <ResizablePanel
-          minSize={0}
-          maxSize={25}
-          defaultSize={20}
-          className="bg-amber-500"
-        >
+        <ResizablePanel minSize={0} maxSize={25} defaultSize={20} className="">
           {" "}
           two{" "}
         </ResizablePanel>

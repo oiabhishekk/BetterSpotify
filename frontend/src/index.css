@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -117,4 +116,37 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+/* Scrollbar styles for Chromium browsers */
+.custom-scrollbar {
+  overflow-y: auto; /* or scroll */
+  scrollbar-width: thin;           /* Firefox */
+  scrollbar-color: #4a4a4a #1a1a1a; /* Firefox: thumb color and track color */
+}
+
+/* Chrome, Edge, Brave */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* width of the whole scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1a1a1a; /* track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a; /* thumb color */
+  border-radius: 0;          /* square corners */
+  border: none;              /* no border */
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:decrement,
+.custom-scrollbar::-webkit-scrollbar-button:vertical:increment {
+  display: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
