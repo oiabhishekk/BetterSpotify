@@ -12,10 +12,11 @@ export const getAlbumById = async (req, res, next) => {
   try {
     const { albumId } = req.params;
 
-    const album = Album.findById(albumId).populate("songs");
+    const album = await Album.findById(albumId).populate("songs");
     if (!album) {
       res.status(401).json({ message: "album not found" });
     }
+
     res.status(200).json(album);
   } catch (error) {
     next(error);

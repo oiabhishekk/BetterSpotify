@@ -21,9 +21,9 @@ const AuthCallBackPage = () => {
           lastName: user?.lastName,
           imageUrl: user?.imageUrl,
         });
-      } catch {
-        console.log("Error while signIn");
-        await signOut();
+      } catch (error) {
+        console.log("Error while signIn", error);
+        // await signOut();
         // signout somehow
       } finally {
         navigate("/");
@@ -32,7 +32,6 @@ const AuthCallBackPage = () => {
     syncUserToDB();
   }, [isLoaded, navigate, user]);
 
-  
   return (
     <div className="h-screen w-full bg-black flex items-center justify-center">
       <Card className="w-[90%] max-w-md bg-zinc-900 border-zinc-800">

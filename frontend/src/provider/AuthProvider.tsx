@@ -36,58 +36,56 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 export default AuthProvider;
 
 // using interceptor in axios
-/*
-import React, { useEffect, useState } from "react";
-import { Loader } from "lucide-react";
-import { useAuth } from "@clerk/clerk-react";
-import axiosInstance from "@/lib/axios";
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [loading, setIsLoading] = useState(true);
-  const { getToken } = useAuth();
+// import React, { useEffect, useState } from "react";
+// import { Loader } from "lucide-react";
+// import { useAuth } from "@clerk/clerk-react";
+// import axiosInstance from "@/lib/axios";
 
-  useEffect(() => {
-    // Add Axios request interceptor
-    const interceptor = axiosInstance.interceptors.request.use(
-      async (config) => {
-        const token = await getToken();
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
+// const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+//   const [loading, setIsLoading] = useState(true);
+//   const { getToken } = useAuth();
 
-    // Auth initialization
-    const initAuth = async () => {
-      try {
-        await getToken(); // optional prefetch to warm up
-      } catch (error) {
-        console.log("error in authprovider", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    initAuth();
+//   useEffect(() => {
+//     // Add Axios request interceptor
+//     const interceptor = axiosInstance.interceptors.request.use(
+//       async (config) => {
+//         const token = await getToken();
+//         if (token) {
+//           config.headers.Authorization = `Bearer ${token}`;
+//         }
+//         return config;
+//       },
+//       (error) => Promise.reject(error)
+//     );
 
-    // Cleanup interceptor on unmount
-    return () => {
-      axiosInstance.interceptors.request.eject(interceptor);
-    };
-  }, [getToken]);
+//     // Auth initialization
+//     const initAuth = async () => {
+//       try {
+//         await getToken(); // optional prefetch to warm up
+//       } catch (error) {
+//         console.log("error in authprovider", error);
+//       } finally {
+//         setIsLoading(false);
+//       }
+//     };
+//     initAuth();
 
-  if (loading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center">
-        <Loader className="text-emerald-500 size-8 animate-spin" />
-      </div>
-    );
-  }
+//     // Cleanup interceptor on unmount
+//     return () => {
+//       axiosInstance.interceptors.request.eject(interceptor);
+//     };
+//   }, [getToken]);
 
-  return <>{children}</>;
-};
+//   if (loading) {
+//     return (
+//       <div className="h-screen w-full flex items-center justify-center">
+//         <Loader className="text-emerald-500 size-8 animate-spin" />
+//       </div>
+//     );
+//   }
 
-export default AuthProvider;
+//   return <>{children}</>;
+// };
 
-*/
+// export default AuthProvider;

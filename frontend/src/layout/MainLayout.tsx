@@ -6,11 +6,12 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { LeftSideBar } from "./components/LeftSideBar";
+import FriendsActivity from "./components/FriendsActivity";
 
 const MainLayout = () => {
   const isMobile = false;
   return (
-    <div>
+    <div className="mt-2">
       <ResizablePanelGroup
         className="flex-1 flex h-full"
         direction="horizontal"
@@ -31,8 +32,7 @@ const MainLayout = () => {
         <ResizableHandle className="w-2 bg-black rounded-lg transition-colors " />
 
         <ResizablePanel minSize={0} maxSize={25} defaultSize={20} className="">
-          {" "}
-          two{" "}
+          <FriendsActivity />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
