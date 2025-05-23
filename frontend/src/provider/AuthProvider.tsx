@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import { useAuth } from "@clerk/clerk-react";
 import axiosInstance from "@/lib/axios";
+import { useAuthStore } from "@/stores/useAuthStore";
 const updateApiToken = (token: string | null) => {
   if (token)
     axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -10,11 +11,13 @@ const updateApiToken = (token: string | null) => {
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setIsLoading] = useState(true);
   const { getToken } = useAuth();
+  const { getAdminStatus } = useAuthStore();
   useEffect(() => {
     const initAuth = async () => {
       try {
         const token = await getToken();
         updateApiToken(token);
+        getAdminStatus();
       } catch (error) {
         updateApiToken(null);
         console.log("error in authprovider", error);
