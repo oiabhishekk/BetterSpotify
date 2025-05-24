@@ -1,3 +1,10 @@
+export interface Stats {
+  totalSong: number;
+  totalAlbum: number;
+  totalUser: number;
+  uniqueArtist: number;
+}
+
 export interface Album {
   _id: string;
   title: string;

@@ -2,14 +2,36 @@ import { Button } from "@/components/ui/button";
 import PlayButton from "./PlayButton";
 import type { Song } from "@/types";
 import SectionGridSkeleton from "./SectionGridSkeleton";
+import { usePlayerStore } from "@/stores/usePlayerStore";
 
 type SectionGridProps = {
   title: string;
   songs: Song[];
   isLoading: boolean;
 };
+
 const SectionGrid = ({ songs, title, isLoading }: SectionGridProps) => {
+  const { playAlbum, currentSong, togglePlay } = usePlayerStore();
+
   if (isLoading) return <SectionGridSkeleton />;
+  const handlePlayAlbum = (index = 0, url: string) => {
+    console.log(index);
+    console.log(currentSong?.audioUrl === url);
+
+    // If user clicks the same song
+    if (currentSong?.audioUrl === url) {
+      togglePlay();
+      return;
+    }
+
+    // If different song, start album from that index
+    console.log(songs);
+
+    if (songs.length) {
+      console.log(songs);
+      playAlbum(songs, index);
+    }
+  };
 
   return (
     <div className="mb-8">
@@ -24,8 +46,11 @@ const SectionGrid = ({ songs, title, isLoading }: SectionGridProps) => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {songs.map((song) => (
+        {songs.map((song, i) => (
           <div
+            onClick={() => {
+              handlePlayAlbum(i, song.audioUrl);
+            }}
             key={song._id}
             className="bg-zinc-800/40 p-4 rounded-md hover:bg-zinc-700/40 transition-all group cursor-pointer"
           >

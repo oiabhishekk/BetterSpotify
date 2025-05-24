@@ -16,7 +16,6 @@ function formatDuration(seconds: number): string {
 const AlbumPage = () => {
   const { albumId } = useParams();
   const { playAlbum, currentSong, togglePlay, isPlaying } = usePlayerStore();
-  // const isPlaying = usePlayerStore((state) => state.isPlaying);
 
   const { isLoading, fetchAlbumById, currentAlbum } = useMusicStore();
   useEffect(() => {

@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { useMusicStore } from "@/stores/useMusicStore";
 import FeaturedSection from "./components/FeaturedSection";
-import MadeForYouSection from "./components/MadeForYouSection";
 import SectionGrid from "./components/SectionGrid";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import TopBar from "./../../components/TopBar";
-import AudioPlayer from "@/layout/components/AudioPlayer";
 
 const HomePage = () => {
   const {

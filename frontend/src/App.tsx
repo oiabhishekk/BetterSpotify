@@ -6,6 +6,7 @@ import MainLayout from "./layout/MainLayout";
 import Chatpage from "./pages/chat/Chatpage";
 import AlbumPage from "./pages/album/AlbumPage";
 import AudioPlayer from "./layout/components/AudioPlayer";
+import AdminDashBoard from "./pages/admin/AdminDashBoard";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           }
         />
         <Route path="/auth-callback" element={<AuthCallBackPage />} />
+        <Route path="/admin" element={<AdminDashBoard />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="chat" element={<Chatpage />} />
