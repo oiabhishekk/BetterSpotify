@@ -16,7 +16,7 @@ export const LeftSideBar = () => {
       await fetchAlbums();
     };
     loadAlbums();
-  },[]);
+  }, []);
 
   return (
     <div className="h-full flex flex-col  gap-2">
@@ -64,12 +64,11 @@ export const LeftSideBar = () => {
             {isLoading ? (
               <PlayListSkeleton />
             ) : (
-              albums.map((album, i) => (
+              albums.map((album) => (
                 <Link
                   to={`/album/${album._id}`}
                   key={album._id}
                   className="p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer "
-                  
                 >
                   <img
                     src={album.imageUrl}

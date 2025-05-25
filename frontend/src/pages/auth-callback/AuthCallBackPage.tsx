@@ -1,13 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import axiosInstance from "@/lib/axios";
-import { useClerk, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 
 const AuthCallBackPage = () => {
   const { user, isLoaded } = useUser();
-  const { signOut } = useClerk();
   const navigate = useNavigate();
   useEffect(() => {
     const syncUserToDB = async () => {

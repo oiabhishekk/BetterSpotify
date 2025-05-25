@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useChatStore } from "./../../stores/useChatStore";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { HeadphonesIcon, Music, Users } from "lucide-react";
@@ -6,7 +6,7 @@ import { useUser } from "@clerk/clerk-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 const FriendsActivity = () => {
-  const { isLoading, users, fetchUsers } = useChatStore();
+  const { users, fetchUsers } = useChatStore();
   const { user } = useUser();
   useEffect(() => {
     if (user) fetchUsers();

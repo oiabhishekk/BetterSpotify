@@ -3,7 +3,7 @@ import { useMusicStore } from "@/stores/useMusicStore";
 import { usePlayerStore } from "@/stores/usePlayerStore";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Clock, Pause, Play } from "lucide-react";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useParams } from "react-router-dom";
 function formatDuration(seconds: number): string {
   const mins = Math.floor(seconds / 60);

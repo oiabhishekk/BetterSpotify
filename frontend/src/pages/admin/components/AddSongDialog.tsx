@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/select";
 import axiosInstance from "@/lib/axios";
 import { useMusicStore } from "@/stores/useMusicStore";
-import { useAuth } from "@clerk/clerk-react";
 import { Plus, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
