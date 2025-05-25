@@ -40,12 +40,12 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/songs", songsRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statsRoutes);
-
+console.log(path.join(__dirname, "../frontend/dist"));//C:\Users\as125\OneDrive\Desktop\Projects\BetterSpotify\frontend\dist
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../frontend/dist")));
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-	});
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
 //error handler
