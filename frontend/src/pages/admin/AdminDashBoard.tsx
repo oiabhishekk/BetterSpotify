@@ -14,13 +14,13 @@ import SongsTabContent from "./components/SongsTabContent";
 const AdminPage = () => {
   const { isAdmin, isLoading } = useAuthStore();
 
-  const { fetchAlbums } = useMusicStore();
+  const { fetchAlbums, fetchStats, fetchSongs } = useMusicStore();
 
   useEffect(() => {
     fetchAlbums();
-    // fetchSongs();
-    // fetchStats();
-  }, [fetchAlbums]);
+    fetchSongs();
+    fetchStats();
+  }, [fetchAlbums, fetchStats, fetchSongs]);
 
   if (!isAdmin && !isLoading) return <div>Unauthorized</div>;
 

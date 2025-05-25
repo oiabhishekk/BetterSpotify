@@ -17,5 +17,5 @@ router.post("/songs", createSong);
 router.delete("/songs/:id", deleteSong);
 
 router.post("/album", createAlbum);
-router.delete("/allbum/:id", deleteAlbum);
+router.delete("/album/:id", deleteAlbum);
 export default router;

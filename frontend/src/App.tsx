@@ -7,11 +7,13 @@ import Chatpage from "./pages/chat/Chatpage";
 import AlbumPage from "./pages/album/AlbumPage";
 import AudioPlayer from "./layout/components/AudioPlayer";
 import AdminDashBoard from "./pages/admin/AdminDashBoard";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <>
       <AudioPlayer />
+      <Toaster />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

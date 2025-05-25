@@ -4,11 +4,8 @@ import StatsCard from "./StatsCard";
 import { useEffect } from "react";
 
 const DashboardStats = () => {
-  const { stats, fetchStats, isLoading } = useMusicStore();
-  useEffect(() => {
-    fetchStats();
-  }, [fetchStats]);
-  console.log(stats);
+  const { stats, isLoading } = useMusicStore();
+
   if (!stats && !isLoading) {
     return;
   }

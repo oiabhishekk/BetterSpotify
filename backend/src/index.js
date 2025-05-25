@@ -1,9 +1,10 @@
 import express from "express";
-import path from "path";
 import dotenv from "dotenv";
+dotenv.config();
+
+import path from "path";
 import fileUpload from "express-fileupload";
 import cors from "cors";
-dotenv.config();
 const app = express();
 app.use(cors());
 
