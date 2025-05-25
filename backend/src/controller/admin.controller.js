@@ -74,7 +74,7 @@ export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
     const { imageFile } = req.files;
-    const imageUrl = await uploadToClaudinary(imageFile);
+    const imageUrl = await uploadToCloudinary(imageFile);
     const album = new Album({
       title,
       artist,
