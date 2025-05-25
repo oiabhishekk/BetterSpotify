@@ -1,7 +1,9 @@
 import { Song } from "./../models/song.model.js";
 import { Album } from "./../models/album.model.js";
 import cloudinary from "../lib/cloudinary.js";
-const uploadToClaudinary = async (file) => {
+import { promises as fs } from "fs";
+
+const uploadToCloudinary = async (file) => {
   try {
     const result = await cloudinary.uploader.upload(file.tempFilePath, {
       resource_type: "auto",
@@ -10,7 +12,14 @@ const uploadToClaudinary = async (file) => {
     return result.secure_url;
   } catch (error) {
     console.error("Cloudinary upload error:", error);
-    throw new Error("error while uploading to cloudinary");
+    throw new Error("Error while uploading to Cloudinary");
+  } finally {
+    // Clean up temp file in both success and failure cases
+    try {
+      await fs.unlink(file.tempFilePath);
+    } catch (fsError) {
+      console.error("Error deleting temp file:", fsError);
+    }
   }
 };
 
@@ -25,8 +34,8 @@ export const createSong = async (req, res, next) => {
     const imageFile = req.files.imageFile;
     console.log(title, artist, albumId, duration);
     // save to cloudinary
-    const audioUrl = await uploadToClaudinary(audioFile);
-    const imageUrl = await uploadToClaudinary(imageFile);
+    const audioUrl = await uploadToCloudinary(audioFile);
+    const imageUrl = await uploadToCloudinary(imageFile);
     const song = new Song({
       title,
       artist,
