@@ -7,9 +7,11 @@ import {
 import { LeftSideBar } from "./components/LeftSideBar";
 import FriendsActivity from "./components/FriendsActivity";
 import { PlaybackControls } from "./components/PlayBackControls";
+import { useIsMobile } from "@/lib/utils";
 
 const MainLayout = () => {
-  const isMobile = false;
+  const isMobile = useIsMobile();
+
   return (
     <div className="mt-2">
       <ResizablePanelGroup
@@ -18,7 +20,7 @@ const MainLayout = () => {
       >
         <ResizablePanel
           defaultSize={20}
-          minSize={isMobile ? 0 : 20}
+          minSize={isMobile ? 20 : 20}
           maxSize={30}
           className=""
         >
@@ -31,7 +33,12 @@ const MainLayout = () => {
         </ResizablePanel>
         <ResizableHandle className="w-2 bg-black rounded-lg transition-colors " />
 
-        <ResizablePanel minSize={0} maxSize={25} defaultSize={20} className="">
+        <ResizablePanel
+          minSize={0}
+          maxSize={25}
+          defaultSize={20}
+          className={`${isMobile ? "hidden" : "block"}`}
+        >
           <FriendsActivity />
         </ResizablePanel>
       </ResizablePanelGroup>

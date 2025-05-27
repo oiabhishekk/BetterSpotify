@@ -8,9 +8,11 @@ import SignInOAuthButton from "./SignInOAuthButton";
 import { Link } from "react-router-dom";
 import { LayoutDashboardIcon } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { useIsMobile } from "@/lib/utils";
 
 const TopBar = () => {
   const { isAdmin } = useAuthStore();
+  const isMobile = useIsMobile();
   return (
     <div
       className="rounded-md flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 
@@ -25,13 +27,11 @@ const TopBar = () => {
         {isAdmin && (
           <Link to={"/admin"} className="flex items-center ">
             <LayoutDashboardIcon className="size-4  mr-2" />
-            Admin Dashboard
+            {isMobile ? "Admin" : "Admin Dashboard"}
           </Link>
         )}
-        
-        <SignedIn>
-          <SignOutButton />
-        </SignedIn>
+
+        <SignedIn>{isMobile ? "" : <SignOutButton />}</SignedIn>
         <SignedOut>
           <SignInOAuthButton />
         </SignedOut>
