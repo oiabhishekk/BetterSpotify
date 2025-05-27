@@ -19,6 +19,8 @@ import albumRoutes from "./routes/album.route.js";
 import statsRoutes from "./routes/stats.route.js";
 
 import { connectDb } from "./lib/db.js";
+import { createServer } from "http";
+import { initializeSocket } from "./lib/socket.js";
 const __dirname = path.resolve();
 
 app.use(clerkMiddleware()); // this will add auth to req.auth
@@ -33,6 +35,9 @@ app.use(
 ); // add req.files when file is uploaded
 
 const PORT = process.env.PORT;
+const httpServer = createServer(app);
+
+initializeSocket(httpServer);
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
@@ -40,12 +45,6 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/songs", songsRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statsRoutes);
-console.log(path.join(__dirname, "../frontend/dist")); //C:\Users\as125\OneDrive\Desktop\Projects\BetterSpotify\frontend\dist
-console.log("Serving static from:", path.join(__dirname, "../frontend/dist"));
-console.log(
-  "Sending index.html from:",
-  path.resolve(__dirname, "../frontend", "dist", "index.html")
-);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
