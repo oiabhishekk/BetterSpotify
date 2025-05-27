@@ -44,7 +44,6 @@ fetchStats:async() =>{
     })
     try {
       const response= await axiosInstance.get("/stats");
-      console.log(response)
       set({
         stats:response.data
       })
@@ -148,7 +147,6 @@ fetchStats:async() =>{
     });
     try {
       const response =await axiosInstance.get(`/songs/madeforyou`);
-      console.log("mfu",response.data)
 
 
       set({
@@ -170,7 +168,6 @@ fetchStats:async() =>{
     });
     try {
       const response =await axiosInstance.get(`/songs/featured`);
-      console.log("featured", response.data)
 
       set({
         featuredSongs:response.data
@@ -191,7 +188,6 @@ fetchStats:async() =>{
     });
     try {
       const response =await axiosInstance.get(`/songs/trending`);
-      console.log("trending", response.data)
 
 
       set({

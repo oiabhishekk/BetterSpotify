@@ -29,7 +29,6 @@ const AlbumPage = () => {
   }
   const handlePlayAlbum = (index = 0) => {
     const selectedSong = currentAlbum?.songs[index];
-    console.log(isPlaying);
     // If user clicks the same song
     if (currentSong?.audioUrl === selectedSong?.audioUrl) {
       togglePlay();
